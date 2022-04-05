@@ -62,15 +62,12 @@ For concatenated files:
 
 module load StdEnv/2020 star/2.7.9a
 
-for file in ${2}/${3}*_R1_trim_cat.fastq.gz ; do         # Use ./* ... NEVER bare *
-    if [ -e "$file" ] ; then   # Check whether file exists.
-        STAR --genomeDir ${1} \
+STAR --genomeDir ${1} \
              --runThreadN 6 \
-             --readFilesIn ${file::-21}_R1_trim_cat.fastq.gz ${file::-21}_R2_trim_cat.fastq.gz \
+             --readFilesIn ${2}/${3}_R1_trim_cat.fastq.gz ${2}/${3}_R2_trim_cat.fastq.gz \
              --outFileNamePrefix ${3} \
              --outSAMtype BAM SortedByCoordinate \
              --outSAMunmapped Within \
              --outSAMattributes Standard
-    fi
-done
+
 ```
