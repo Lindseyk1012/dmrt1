@@ -42,7 +42,7 @@ STAR --runThreadN 4 \
 --sjdbOverhang 99
 ```
 # mapping data for each individual to the reference
-For concatenated files: 
+For concatenated (dmrt1L) files: 
 ```sh
 #!/bin/sh
 #SBATCH --job-name=star_align
@@ -71,7 +71,7 @@ STAR --genomeDir ${1} \
              --outSAMattributes Standard
 
 ```
-For non-concatenated and dmrt1S files:
+For non-concatenated (dmrt1L) and dmrt1S files:
 ``` sh
 #!/bin/sh
 #SBATCH --job-name=star_align
