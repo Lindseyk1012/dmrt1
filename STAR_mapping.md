@@ -49,7 +49,7 @@ For concatenated files:
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=4
 #SBATCH --time=120:00:00
-#SBATCH --mem=32gb
+#SBATCH --mem=48gb
 #SBATCH --output=star_align.%J.out
 #SBATCH --error=star_align.%J.err
 #SBATCH --account=def-ben
@@ -71,3 +71,33 @@ STAR --genomeDir ${1} \
              --outSAMattributes Standard
 
 ```
+For non-concatenated and dmrt1S files:
+``` sh
+#!/bin/sh
+#SBATCH --job-name=star_align
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --time=120:00:00
+#SBATCH --mem=48gb
+#SBATCH --output=star_align.%J.out
+#SBATCH --error=star_align.%J.err
+#SBATCH --account=def-ben
+
+# run by passing an argument like this (in the directory with the files)
+# sbatch 2022_align_paired_fq_to_ref_for_star.sh pathandname_of_ref path_to_paired_fq_filez prefix
+# dmrt1L_55_R1_trim_cat.fastq.gz
+
+
+
+module load StdEnv/2020 star/2.7.9a
+
+STAR --genomeDir ${1} \
+             --runThreadN 6 \
+             --readFilesIn ${2}/${3}_R1_trim.fastq.gz ${2}/${3}_R2_trim.fastq.gz \
+             --outFileNamePrefix ${3} \
+             --outSAMtype BAM SortedByCoordinate \
+             --outSAMunmapped Within \
+             --outSAMattributes Standard
+             
+ ```
+ 
