@@ -100,4 +100,31 @@ STAR --genomeDir ${1} \
              --outSAMattributes Standard
              
  ```
- 
+ Sort and Readgroups (Samtools)
+ ```
+ #!/bin/sh
+#SBATCH --job-name=sort_and_rg
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --time=32:00:00
+#SBATCH --mem=16gb
+#SBATCH --output=sort_and_rg.%J.out
+#SBATCH --error=sort_and_rg.%J.err
+#SBATCH --account=def-ben
+
+# run by passing an argument like this
+# sbatch 2022_samtools_sort_and_readgroups.sh bamfile_prefix samplename
+
+module load StdEnv/2020 samtools/1.12
+# Sort both alignments
+samtools sort ${1}.bam -o ${1}.sorted.bam
+
+# add readgroups
+module load picard/2.23.3
+
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups I=${1}.sorted.bam O=${1}.sorted_rg.bam RGID=4 RGLB=${2} RGPL=ILLUMINA RGPU=${2} RGSM=${2}
+
+# index
+samtools index ${1}.sorted_rg.bam
+```
+
