@@ -128,3 +128,43 @@ java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups I=${1}.sorted.bam O=${
 samtools index ${1}.sorted_rg.bam
 ```
 
+Combine Counts for Multiple Individuals 
+```
+#!/bin/sh
+#SBATCH --job-name=trinity
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=24:00:00
+#SBATCH --mem=32gb
+#SBATCH --output=trinity.%J.out
+#SBATCH --error=trinity.%J.err
+#SBATCH --account=def-ben
+module load r/4.1.2
+module load r-bundle-bioconductor/3.14
+module load trinity/2.11.0
+
+/home/kukoll1/scratch/bin/trinityrnaseq-v2.12.0/trinityrnaseq-v2.12.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix dmrt1L_\
+dmrt1S  --gene_trans_map none --name_sample_by_basedir /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_11_kallisto_boot_out/abundance.tsv /home/kukoll1/scr\
+atch/concat_dmrt1L/dmrt1L_17_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_19_kallisto_boot_out/abundance.tsv /home/kukol\
+l1/scratch/concat_dmrt1L/dmrt1L_24_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_25_kallisto_boot_out/abundance.tsv /home\
+/kukoll1/scratch/concat_dmrt1L/dmrt1L_26_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_27_kallisto_boot_out/abundance.tsv\
+ /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_30_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_35_kallisto_boot_out/abundan\
+ce.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_41_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_43_kallisto_boot_out/a\
+bundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_50_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_55_kallisto_boot\
+_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_59_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_6_kallisto\
+_boot_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_7_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/concat_dmrt1L/dmrt1L_8_kall\
+isto_boot_out/abundance.tsv /home/kukoll1/scratch/nonconcat_dmrt1L/dmrt1L_13_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/nonconcat_dmrt1L/dm\
+rt1L_15_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/nonconcat_dmrt1L/dmrt1L_34_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/\
+dmrt1S_11_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_13_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_1\
+5_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_16_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_19_kallis\
+to_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_1_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_25_kallisto_boot_o\
+ut/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_30_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_6_kallisto_boot_out/abunda\
+nce.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_8_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_9_kallisto_boot_out/abundance.tsv/h\
+ome/kukoll1/scratch/dmrt1S/dmrt1S_T10_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_T14_kallisto_boot_out/abundance.tsv /home/ku\
+koll1/scratch/dmrt1S/dmrt1S_T15_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_T18_kallisto_boot_out/abundance.tsv /home/kukoll1/\
+scratch/dmrt1S/dmrt1S_T20_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_T23_kallisto_boot_out/abundance.tsv /home/kukoll1/scratc\
+h/dmrt1S/dmrt1S_T24_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_T29_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt\
+1S/dmrt1S_T30_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_T4_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt\
+1S_T5_kallisto_boot_out/abundance.tsv
+```
+
