@@ -167,4 +167,9 @@ h/dmrt1S/dmrt1S_T24_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S
 1S/dmrt1S_T30_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt1S_T4_kallisto_boot_out/abundance.tsv /home/kukoll1/scratch/dmrt1S/dmrt\
 1S_T5_kallisto_boot_out/abundance.tsv
 ```
+Download File to Computer 
+```
+scp kukoll1@cedar.computecanada.ca:/home/kukoll1/scratch/scripts/dmw.isoform.counts.matrix .
+# do this from the main mobaxterm window (do not login to any compute canada accounts)
 
+```
