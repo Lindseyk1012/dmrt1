@@ -128,7 +128,7 @@ java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups I=${1}.sorted.bam O=${
 samtools index ${1}.sorted_rg.bam
 ```
 
-Combine Counts for Multiple Individuals 
+Combine Counts for Multiple Individuals (Not for the STAR process) 
 ```
 #!/bin/sh
 #SBATCH --job-name=trinity
