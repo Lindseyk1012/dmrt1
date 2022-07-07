@@ -173,3 +173,22 @@ scp kukoll1@cedar.computecanada.ca:/home/kukoll1/scratch/scripts/dmw.isoform.cou
 # do this from the main mobaxterm window (do not login to any compute canada accounts)
 
 ```
+
+Touch Files
+```
+# in kukoll1 scratch directory paste the following:
+
+find . > all_files_list
+
+ 
+
+while IFS= read -r line <&3; do
+
+  line=${line%$'\r'} # trim DOS newlines
+
+  printf 'touching following line: %s\n' "$line" >&2
+
+  touch "$line"
+
+done 3<all_files_list
+```
